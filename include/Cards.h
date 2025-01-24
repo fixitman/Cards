@@ -18,6 +18,7 @@ struct Card{
 class Deck {
     public:    
         Deck(int size);
+        Deck();
         void shuffle();
         shared_ptr<Card> deal();
         ostream& printHand(ostream& out);
@@ -29,7 +30,12 @@ class Hand
 {
 private:    
     vector<shared_ptr<Card>> cards;
+    bool soft = false;
 public:
     void draw(Deck& deck);
     void printHand(ostream& out);
+    void printTotal(ostream& out);
+    int computeValue();
+    bool isSoft();
+    
 };

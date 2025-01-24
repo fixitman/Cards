@@ -7,7 +7,7 @@
 #include <chrono>
 #include <iostream>
 
-Deck::Deck(int size = 1){
+Deck::Deck(int size){
     for(int d = 0; d< size; d++){
         for(int s = 0;s < strlen(SUITS); s++){
             for(int f = 0; f< sizeof(VALUES)/sizeof(int);f++){
@@ -33,11 +33,6 @@ shared_ptr<Card> Deck::deal(){
     return c;
 }
 
-
-shared_ptr<Card> getCard(Deck& deck){
-    return deck.deal();
-}
-
 ostream& Card::printCard(ostream& out){
     out << this->face << this->suit << ' ';
     return out;
@@ -46,6 +41,7 @@ ostream& Card::printCard(ostream& out){
 void Hand::printHand(ostream& out){
     for(int i=0; i<this->cards.size(); i++)
     cards.at(i)->printCard(out);
+
     return;
 }
 
@@ -53,24 +49,41 @@ void Hand::draw(Deck& deck){
     cards.push_back(deck.deal());
 }
 
-
-
-
-
-
-
-
-int main(){
-    Deck* deck = new Deck();
-    deck->shuffle();
-    Hand hand;
-    hand.draw(*deck);
-    hand.draw(*deck);
-    hand.draw(*deck);
-    hand.draw(*deck);
-    hand.printHand(cout);
-
-    
-
-    return 0;
+void Hand::printTotal(ostream& out){
+    out << "Total: " << computeValue() << " ";
+    if(soft){
+        out << "Soft ";
+    }
 }
+
+bool Hand::isSoft(){
+    return soft;
+}
+
+int Hand::computeValue(){
+    int total = 0;
+    int v = 0;
+    
+    for(int i = 0; i<cards.size(); i++){
+        v = cards.at(i)->value;
+        if(v < 11){
+            total += v;    
+                 
+        }else{
+            if(total > 11 || soft){
+                total += 1;
+                soft = true;
+            }else{
+                total += 11;
+            }
+        }
+    }
+    return total;
+}
+
+
+
+
+
+
+
