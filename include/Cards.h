@@ -36,6 +36,6 @@ public:
     void printHand(ostream& out);
     void printTotal(ostream& out);
     int computeValue();
-    bool isSoft();
     
+
 };
