@@ -72,7 +72,7 @@ int Hand::computeValue(){
                  // need to test this part 
         }else{
             hasAce = true;
-            if(total > 11 || soft){
+            if(total > 10 || soft){
                 total += 1;
                 soft = true;
             }else{
