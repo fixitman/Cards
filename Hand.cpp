@@ -3,6 +3,7 @@
 void Hand::printHand(ostream& out){
     for(int i=0; i<this->mCards.size(); i++)
     mCards.at(i)->printCard(out);
+    printTotal(out);
 
     return;
 }
@@ -12,10 +13,19 @@ void Hand::draw(Deck& deck){
 }
 
 void Hand::printTotal(ostream& out){
-    out << "Total: " << computeValue() << " ";
+    int val = computeValue();
+    out << "Total: " << val << " ";
     if(mIsSoft){
-        out << "Soft ";
+        if(val == 21 && mCards.size() == 2){
+            out << "BlackJack!!";            
+        }else{
+            out << "Soft ";
+        }
     }
+    if(val > 21){
+        out << "BUST! ";
+    }
+    out << "\n";
 }
 
 int Hand::computeValue(){
@@ -27,21 +37,36 @@ int Hand::computeValue(){
         v = mCards.at(i)->value;
         if(v < 11){
             total += v;    
-            if(total > 21 && hasAce && mIsSoft){
+            if(total > 21 && mIsSoft){
                 total -= 10;
                 mIsSoft = false;
             }
                  // need to test this part 
         }else{
-            hasAce = true;
-            if(total > 10 || mIsSoft){
+            if(total > 10 ){
                 total += 1;
                 mIsSoft = false;
-            }else{
+            }else {
                 total += 11;
                 mIsSoft = true;
             }
+            hasAce = true;
         }
     }
     return total;
+}
+
+
+void Hand::playDealer(int hardRule, int softRule, Deck& deck, ostream& out){
+    bool done = false;
+    while(!done){
+        draw(deck);
+        int value = this->computeValue();
+        if(value >= hardRule && !mIsSoft){
+            done = true;            
+        }else if(value >= softRule && mIsSoft){
+            done = true;
+        }
+    }
+    printHand(out);
 }
