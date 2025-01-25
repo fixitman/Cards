@@ -1,4 +1,6 @@
-#include "include/Cards.h"
+#include "include/Card.h"
+#include "include/Hand.h"
+#include "include/Deck.h"
 #include <iostream>
 
 
