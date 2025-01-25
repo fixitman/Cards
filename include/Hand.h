@@ -20,6 +20,7 @@ public:
     void printHand(ostream& out);
     void printTotal(ostream& out);
     int computeValue();
+    void playDealer(int hardRule, int softRule);
     
 };
 

@@ -27,18 +27,19 @@ int Hand::computeValue(){
         v = mCards.at(i)->value;
         if(v < 11){
             total += v;    
-            if(total > 21 && hasAce && !mIsSoft){
+            if(total > 21 && hasAce && mIsSoft){
                 total -= 10;
-                mIsSoft = true;
+                mIsSoft = false;
             }
                  // need to test this part 
         }else{
             hasAce = true;
             if(total > 10 || mIsSoft){
                 total += 1;
-                mIsSoft = true;
+                mIsSoft = false;
             }else{
                 total += 11;
+                mIsSoft = true;
             }
         }
     }
