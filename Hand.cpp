@@ -1,19 +1,19 @@
 #include "include/Hand.h"
 
 void Hand::printHand(ostream& out){
-    for(int i=0; i<this->cards.size(); i++)
-    cards.at(i)->printCard(out);
+    for(int i=0; i<this->mCards.size(); i++)
+    mCards.at(i)->printCard(out);
 
     return;
 }
 
 void Hand::draw(Deck& deck){
-    cards.push_back(deck.deal());
+    mCards.push_back(deck.deal());
 }
 
 void Hand::printTotal(ostream& out){
     out << "Total: " << computeValue() << " ";
-    if(soft){
+    if(mIsSoft){
         out << "Soft ";
     }
 }
@@ -23,20 +23,20 @@ int Hand::computeValue(){
     int v = 0;
     bool hasAce = false;
     
-    for(int i = 0; i<cards.size(); i++){
-        v = cards.at(i)->value;
+    for(int i = 0; i<mCards.size(); i++){
+        v = mCards.at(i)->value;
         if(v < 11){
             total += v;    
-            if(total > 21 && hasAce && !soft){
+            if(total > 21 && hasAce && !mIsSoft){
                 total -= 10;
-                soft = true;
+                mIsSoft = true;
             }
                  // need to test this part 
         }else{
             hasAce = true;
-            if(total > 10 || soft){
+            if(total > 10 || mIsSoft){
                 total += 1;
-                soft = true;
+                mIsSoft = true;
             }else{
                 total += 11;
             }

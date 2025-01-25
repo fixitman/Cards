@@ -13,7 +13,7 @@ class Deck {
         shared_ptr<Card> deal();
         ostream& printHand(ostream& out);
     private:
-        vector<shared_ptr<Card>> cards;
+        vector<shared_ptr<Card>> mCards;
 };
 
 

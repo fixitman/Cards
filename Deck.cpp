@@ -12,7 +12,7 @@ Deck::Deck(int size){
                 c->face=FACES[f];
                 c->suit = SUITS[s];
                 c->value = VALUES[f];
-                cards.push_back(c);
+                mCards.push_back(c);
             }
         }
     }
@@ -20,12 +20,12 @@ Deck::Deck(int size){
 
 void Deck::shuffle(){
     auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::shuffle(std::begin(cards), std::end(cards), std::default_random_engine(seed));
+    std::shuffle(std::begin(mCards), std::end(mCards), std::default_random_engine(seed));
 }
 
 shared_ptr<Card> Deck::deal(){
 
-    shared_ptr<Card> c = cards.back();
-    cards.pop_back();
+    shared_ptr<Card> c = mCards.back();
+    mCards.pop_back();
     return c;
 }

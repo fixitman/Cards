@@ -13,15 +13,14 @@
 class Hand
 {
 private:    
-    vector<shared_ptr<Card>> cards;
-    bool soft = false;
+    vector<shared_ptr<Card>> mCards;
+    bool mIsSoft = false;
 public:
     void draw(Deck& deck);
     void printHand(ostream& out);
     void printTotal(ostream& out);
     int computeValue();
     
-
 };
 
 
