@@ -6,14 +6,18 @@
 
 
 int main(){
-    Deck* deck = new Deck(10);
-    deck->shuffle();
-    Hand hand;
-    hand.draw(*deck);
-    hand.draw(*deck);
-    hand.draw(*deck);
-    hand.printHand(cout);
-    hand.printTotal(cout);
+    bool done = false;
+    char key = ' ';
+    while(!done){
+        Deck* deck = new Deck(10);
+        deck->shuffle();
+        Hand hand;
+        hand.playDealer(17,17,*deck,cout);
+        key = cin.get();
+        if(key == 'q') done = true;
+
+    }
+
     
     return 0;
 }
