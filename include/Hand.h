@@ -17,8 +17,9 @@ public:
     void draw(Deck& deck);
     void printHand(std::ostream& out);
     void printTotal(std::ostream& out);
-    int computeValue();
+    void calculateValue();
     void playDealer(int hardRule, int softRule, Deck& deck, std::ostream& out);
+    int playPlayer(Deck& deck, std::ostream& out);
     
 };
 
