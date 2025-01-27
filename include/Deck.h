@@ -4,16 +4,16 @@
 #include <memory>
 #include <iostream>
 #include "Card.h"
-
+    
 class Deck {
     public:    
         Deck(int size);
         Deck();
         void shuffle();
-        shared_ptr<Card> deal();
-        ostream& printHand(ostream& out);
+        std::shared_ptr<Card> deal();
+        std::ostream& printHand(std::ostream& out);
     private:
-        vector<shared_ptr<Card>> mCards;
+        std::vector<std::shared_ptr<Card>> mCards;
 };
 
 

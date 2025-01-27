@@ -4,7 +4,6 @@
 #include <iostream>
 
 
-
 int main(){
     bool done = false;
     char key = ' ';
@@ -12,8 +11,8 @@ int main(){
         Deck* deck = new Deck(10);
         deck->shuffle();
         Hand hand;
-        hand.playDealer(17,17,*deck,cout);
-        key = cin.get();
+        hand.playDealer(17,17,*deck,std::cout);
+        key = std::cin.get();
         if(key == 'q') done = true;
 
     }

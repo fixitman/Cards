@@ -3,6 +3,7 @@
 #include <random>
 #include <algorithm>
 
+using namespace std;
 
 Deck::Deck(int size){
     for(int d = 0; d< size; d++){

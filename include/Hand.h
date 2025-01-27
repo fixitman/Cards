@@ -7,20 +7,18 @@
 #include "Card.h"
 #include "Deck.h"
 
-
-
-
 class Hand
 {
 private:    
-    vector<shared_ptr<Card>> mCards;
+    std::vector<std::shared_ptr<Card>> mCards;
     bool mIsSoft = false;
+    int mValue = 0;
 public:
     void draw(Deck& deck);
-    void printHand(ostream& out);
-    void printTotal(ostream& out);
+    void printHand(std::ostream& out);
+    void printTotal(std::ostream& out);
     int computeValue();
-    void playDealer(int hardRule, int softRule, Deck& deck, ostream& out);
+    void playDealer(int hardRule, int softRule, Deck& deck, std::ostream& out);
     
 };
 

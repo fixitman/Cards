@@ -7,6 +7,8 @@
 #include <chrono>
 #include <iostream>
 
+using namespace std;
+
 
 
 ostream& Card::printCard(ostream& out){
