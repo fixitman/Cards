@@ -21,8 +21,8 @@ int main(){
         out << "Dealer has: ";
         dealer.printHand(out);
         out << "\n" << "You:  ";
-        ptotal = player.playPlayer(*deck,out);
-        
+        //ptotal = player.playPlayer(*deck,out);
+        ptotal = player.playPlayerSystem1(*deck, out, dealer.mCards.at(0)->value);
         if(ptotal > 21){
             //out << "Bust\n";
             losses++;

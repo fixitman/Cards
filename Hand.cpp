@@ -112,3 +112,46 @@ int Hand::playPlayer(Deck& deck, ostream& out){
 bool Hand::hasBlackjack(){
     return mBlackjack;
 }
+
+int Hand::playPlayerSystem1(Deck& deck, ostream& out, int dealerCard){
+    char c = ' ';
+    draw(deck);
+    draw(deck);
+    calculateValue();
+    printHand(out);
+    bool done = false;
+    while(!done){
+        if(mValue < 12){
+            draw(deck);
+            calculateValue();
+            mCards[mCards.size()-1]->printCard(out);
+        }else if((mValue >= 17 && !mIsSoft) || (mValue >= 18 && mIsSoft) ){
+            done = true;
+        }else if(mValue <= 17 && mIsSoft){
+            draw(deck);
+            calculateValue();
+            mCards[mCards.size()-1]->printCard(out);      
+        }else if(mValue == 12){
+            if(dealerCard > 3 && dealerCard < 7){
+                done = true;
+            }else{
+                draw(deck);
+                calculateValue();
+                mCards[mCards.size()-1]->printCard(out);
+            }
+        }else if(mValue > 12 && mValue < 17 && !mIsSoft){
+            if(dealerCard > 6){
+                draw(deck);
+                calculateValue();
+                mCards[mCards.size()-1]->printCard(out);
+            }else{
+                done = true;
+            }
+        }else{
+            out << "you Missed Something";
+            done = true;
+        }
+    }
+    out << "\n";
+    return mValue;
+}
