@@ -1,6 +1,7 @@
 #include "include/Hand.h"
 #include <conio.h>
 #include <iostream>
+#include <thread>
 
 using namespace std;
 
@@ -65,8 +66,11 @@ void Hand::calculateValue(){
 
 int Hand::playDealer(int hardRule, int softRule, Deck& deck, ostream& out){
     bool done = false;
+    mCards.at(0)->printCard(out);
     while(!done){
+        std::this_thread::sleep_for(1000ms);
         draw(deck);
+        mCards.at(mCards.size()-1)->printCard(out);
         calculateValue();
         if(mValue >= hardRule && !mIsSoft){
             done = true;            
@@ -74,7 +78,7 @@ int Hand::playDealer(int hardRule, int softRule, Deck& deck, ostream& out){
             done = true;
         }
     }
-    printHand(out);
+    
     return mValue;
 }
 
@@ -87,6 +91,7 @@ int Hand::playPlayer(Deck& deck, ostream& out){
     printHand(out);
     if(this->mValue == 21){
       c = 's';
+      mBlackjack = true;
       printTotal(out);
       return mValue;
     }    
@@ -102,4 +107,8 @@ int Hand::playPlayer(Deck& deck, ostream& out){
     }
     printTotal(out);
     return mValue;
+}
+
+bool Hand::hasBlackjack(){
+    return mBlackjack;
 }

@@ -20,19 +20,23 @@ int main(){
         dealer.draw(*deck);
         out << "Dealer has: ";
         dealer.printHand(out);
-        out << "\n" << "You: ";
+        out << "\n" << "You:  ";
         ptotal = player.playPlayer(*deck,out);
         
         if(ptotal > 21){
             //out << "Bust\n";
             losses++;
+        }else if(player.hasBlackjack()){
+            wins++;
         }else{
-            out << "Dealer  ";
+            out << "Dealer:  ";
             dtotal = dealer.playDealer(17,17,*deck,out);
             out << "   Total: " << dtotal << "  ";
-            if(dtotal > 21 || dtotal < ptotal){
+            if(dtotal > 21 || ptotal > dtotal){
                 out << "You win!\n";
                 wins++;
+            }else if(ptotal == dtotal){
+                out << "Push \n";            
             }else{
                 out << "You lose!\n";
                 losses++;
@@ -53,7 +57,6 @@ int main(){
             }
         }
     }
-
     delete deck;
     return 0;
 }
