@@ -12,8 +12,10 @@ class Deck {
         void shuffle();
         std::shared_ptr<Card> deal();
         std::ostream& printHand(std::ostream& out);
+        bool needsShuffle();
     private:
         std::vector<std::shared_ptr<Card>> mCards;
+        int mShufflePoint = 0;
 };
 
 

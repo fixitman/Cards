@@ -12,7 +12,9 @@ using namespace std;
 
 
 ostream& Card::printCard(ostream& out){
-    out << this->face << this->suit << ' ';
+    out << this->face;
+    //out << this->suit; 
+    out << ' ';
     return out;
 }
 

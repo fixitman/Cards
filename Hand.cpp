@@ -63,7 +63,7 @@ void Hand::calculateValue(){
 }
 
 
-void Hand::playDealer(int hardRule, int softRule, Deck& deck, ostream& out){
+int Hand::playDealer(int hardRule, int softRule, Deck& deck, ostream& out){
     bool done = false;
     while(!done){
         draw(deck);
@@ -75,6 +75,7 @@ void Hand::playDealer(int hardRule, int softRule, Deck& deck, ostream& out){
         }
     }
     printHand(out);
+    return mValue;
 }
 
 int Hand::playPlayer(Deck& deck, ostream& out){

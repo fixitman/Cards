@@ -17,6 +17,7 @@ Deck::Deck(int size){
             }
         }
     }
+    mShufflePoint = mCards.size()/5;
 }
 
 void Deck::shuffle(){
@@ -29,4 +30,8 @@ shared_ptr<Card> Deck::deal(){
     shared_ptr<Card> c = mCards.back();
     mCards.pop_back();
     return c;
+}
+
+bool Deck::needsShuffle(){
+    return (mCards.size() < mShufflePoint);
 }
