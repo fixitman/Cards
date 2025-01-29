@@ -5,6 +5,9 @@
 
 using namespace std;
 
+auto SLEEP = 0ms;
+
+
 void Hand::printHand(ostream& out){
     for(int i=0; i< mCards.size(); i++){
         mCards.at(i)->printCard(out);
@@ -68,7 +71,7 @@ int Hand::playDealer(int hardRule, int softRule, Deck& deck, ostream& out){
     bool done = false;
     mCards.at(0)->printCard(out);
     while(!done){
-        std::this_thread::sleep_for(1000ms);
+        std::this_thread::sleep_for(SLEEP);
         draw(deck);
         mCards.at(mCards.size()-1)->printCard(out);
         calculateValue();
@@ -125,9 +128,9 @@ int Hand::playPlayerSystem1(Deck& deck, ostream& out, int dealerCard){
             draw(deck);
             calculateValue();
             mCards[mCards.size()-1]->printCard(out);
-        }else if((mValue >= 17 && !mIsSoft) || (mValue >= 18 && mIsSoft) ){
+        }else if((mValue >= 17 && !mIsSoft) || (mValue >= 17 && mIsSoft) ){
             done = true;
-        }else if(mValue <= 17 && mIsSoft){
+        }else if(mValue <= 16 && mIsSoft){
             draw(deck);
             calculateValue();
             mCards[mCards.size()-1]->printCard(out);      

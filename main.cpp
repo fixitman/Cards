@@ -9,13 +9,14 @@ int main(){
     const int DECKS = 1;
     
     bool done = false;
+    int RUNS = 10000;
     char key = ' ';
     
     int wins = 0, losses = 0, ptotal = 0, dtotal = 0;
     std::ostream& out = std::cout;
     Deck* deck = new Deck(DECKS);
     deck->shuffle();
-    while(!done){
+    while(RUNS-- > 0){
         Hand player, dealer;
         dealer.draw(*deck);
         out << "Dealer has: ";
@@ -42,13 +43,12 @@ int main(){
                 losses++;
             }
         }
-        out << "wins: " << wins << " Loses: " << losses << "\n\n";
+        out << "wins: " << wins << " losses: " << losses << "\n\n";
 
-        key = _getch();
+        //key = _getch();
         if(key == 'q'){
              done = true;
-        }
-        else {
+        } else {
             if(deck->needsShuffle()){
                 out << "Shuffling... \n\n";
                 delete deck;
