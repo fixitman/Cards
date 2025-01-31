@@ -5,7 +5,7 @@
 #include <conio.h>
 
 
-int main(){
+int mainX(){
     const int DECKS = 1;
     
     bool done = false;
@@ -16,14 +16,14 @@ int main(){
     std::ostream& out = std::cout;
     Deck* deck = new Deck(DECKS);
     deck->shuffle();
-    while(RUNS-- > 0){
+    while(!done){
         Hand player, dealer;
         dealer.draw(*deck);
         out << "Dealer has: ";
         dealer.printHand(out);
         out << "\n" << "You:  ";
-        //ptotal = player.playPlayer(*deck,out);
-        ptotal = player.playPlayerSystem1(*deck, out, dealer.mCards.at(0)->value);
+        ptotal = player.playPlayer(*deck,out);
+        //ptotal = player.playPlayerSystem1(*deck, out, dealer.mCards.at(0)->value);
         if(ptotal > 21){
             //out << "Bust\n";
             losses++;
@@ -45,7 +45,7 @@ int main(){
         }
         out << "wins: " << wins << " losses: " << losses << "\n\n";
 
-        //key = _getch();
+        key = _getch();
         if(key == 'q'){
              done = true;
         } else {
@@ -59,4 +59,10 @@ int main(){
     }
     delete deck;
     return 0;
+}
+
+int main(){
+    // create a hand and put cards in it 
+    // calculate value
+    // print total
 }

@@ -41,27 +41,22 @@ void Hand::printTotal(ostream& out){
 void Hand::calculateValue(){
     
     int v = 0;
-    bool hasAce = false;
     mValue = 0;
+    int aces = 0;
+
     for(int i = 0; i<mCards.size(); i++){
         v = mCards.at(i)->value;
-        if(v < 11){
-            mValue += v;    
-            if(mValue > 21 && mIsSoft){
-                mValue -= 10;
-                mIsSoft = false;
-            }
-                 // need to test this part 
-        }else{
-            if(mValue > 10 ){
-                mValue += 1;
-                mIsSoft = false;
-            }else {
-                mValue += 11;
-                mIsSoft = true;
-            }
-            hasAce = true;
+        mValue += v;
+        if(v == 11){
+            aces++;
         }
+    }
+    while(mValue > 21 && aces > 0){
+        mValue -= 10;
+        aces--;
+    }
+    if(aces>0){
+        mIsSoft = true;
     }
     return ;
 }
