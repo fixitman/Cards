@@ -5,7 +5,7 @@
 #include <conio.h>
 
 
-int mainX(){
+int main(){
     const int DECKS = 1;
     
     bool done = false;
@@ -61,8 +61,3 @@ int mainX(){
     return 0;
 }
 
-int main(){
-    // create a hand and put cards in it 
-    // calculate value
-    // print total
-}

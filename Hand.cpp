@@ -5,7 +5,7 @@
 
 using namespace std;
 
-auto SLEEP = 0ms;
+auto SLEEP = 1200ms;
 
 
 void Hand::printHand(ostream& out){
